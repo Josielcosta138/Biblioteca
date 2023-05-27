@@ -1,7 +1,10 @@
 package model.Execultavel;
-
-public class Main {
+import model.Controlador.ProcessosPrincipais;
+import model.Controlador.ProcessosPrincipais.*;
+public class Main extends ProcessosPrincipais {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        chamaMenuPrincipal();
     }
+
+
 }
