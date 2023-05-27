@@ -2,6 +2,7 @@ package model.Controlador;
 
 import javax.swing.*;
 import model.Controlador.ProcessosPrincipais;
+import model.StatusGenero;
 import model.UsuarioLeitor;
 import repository.UsuarioLeitorDao;
 import model.Execultavel.Main;
@@ -35,8 +36,21 @@ public class Cadastros {
                 String endereco = JOptionPane.showInputDialog(null, "Informe endereco do usuário leitor. ");
                 String email = JOptionPane.showInputDialog(null, "Informe e-mail do usuário leitor. ");
                 LocalDate dataMatricula = LocalDate.now();
+
+                Object[] selecionaGenero = {"Masculino","Feminino","Outros"};
+                String  selecaoDefautl = (String) selecionaGenero[0];
+                Object selecaoGen = JOptionPane.showInputDialog(null," Informe genero do usuário Leitor:", "Genero", JOptionPane.QUESTION_MESSAGE, null,selecionaGenero, selecaoDefautl);
+
+                StatusGenero statusGenero = StatusGenero.MASCULINO;
+                if (selecaoGen.equals("Feminino")){
+                    statusGenero = StatusGenero.FEMININO;
+                } else if (selecaoGen.equals("Outros")) {
+                    statusGenero = StatusGenero.OUTROS;
+                }
+
+
                 //String dataMatriculaNova = JOptionPane.showInputDialog(null, "Digite uma data (formato: dd/MM/yyyy):");
-                UsuarioLeitor usuarioLeitor = new UsuarioLeitor(nome,cpf,codigoMatriculaConvertido,idadeConvertido,endereco,telefone,email,dataMatricula);
+                UsuarioLeitor usuarioLeitor = new UsuarioLeitor(nome,cpf,statusGenero,codigoMatriculaConvertido,idadeConvertido,endereco,telefone,email,dataMatricula);
                 UsuarioLeitorDao.salvar(usuarioLeitor);
                 chamaMenuCadastros();
 
