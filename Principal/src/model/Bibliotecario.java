@@ -1,7 +1,7 @@
 package model;
 
 public class Bibliotecario extends Usuario{
-    public Bibliotecario(String nome, String cpf) {
-        super(nome, cpf);
+    public Bibliotecario(String nome, String cpf, StatusGenero statusGenero) {
+        super(nome, cpf, statusGenero);
     }
 }

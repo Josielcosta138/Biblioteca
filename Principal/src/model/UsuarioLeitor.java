@@ -12,12 +12,9 @@ public class UsuarioLeitor extends Usuario{
     private String email;
     private LocalDate dataMatricula;
 
-    public UsuarioLeitor(String nome, String cpf) {
-        super(nome, cpf);
-    }
 
-    public UsuarioLeitor(String nome, String cpf, int codigoMatricula, int idade, String endereco, String telefone, String email, LocalDate dataMatricula) {
-        super(nome, cpf);
+    public UsuarioLeitor(String nome, String cpf, StatusGenero statusGenero, int codigoMatricula, int idade, String endereco, String telefone, String email, LocalDate dataMatricula) {
+        super(nome, cpf, statusGenero);
         this.codigoMatricula = codigoMatricula;
         this.idade = idade;
         this.endereco = endereco;
@@ -75,15 +72,19 @@ public class UsuarioLeitor extends Usuario{
         this.dataMatricula = dataMatricula;
     }
 
+
     @Override
     public String toString() {
         return "UsuarioLeitor{" +
-                "codigoMatricula=" + codigoMatricula +
-                ", idade=" + idade +
-                ", endereco='" + endereco + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", email='" + email + '\'' +
-                ", dataMatricula=" + dataMatricula +
+                "\n codigoMatricula=" + codigoMatricula +
+                ",\n nome=" + getNome() +
+                ",\n cpf=" + getCpf() +
+                ",\n idade=" + idade +
+                ",\n endereco='" + endereco + '\'' +
+                ",\n telefone='" + telefone + '\'' +
+                ",\n email='" + email + '\'' +
+                ",\n dataMatricula=" + dataMatricula +
+                ",\n statusGenero=" + statusGenero +
                 '}';
     }
 }
