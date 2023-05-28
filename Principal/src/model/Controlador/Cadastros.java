@@ -29,7 +29,7 @@ public class Cadastros {
 
                 String[] opcoesMenuCadAltDel= {"Cadastrar","Alterar", "Deletar", "Sair"};
                 int menuCadastroLeitor = JOptionPane.showOptionDialog(null, "Escolha uma opção:",
-                        "Menu-Cadastro",
+                        "Menu Cadastro - Usuário Leitor",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoesMenuCadAltDel, opcoesMenuCadAltDel[0]);
 
                 switch (menuCadastroLeitor) {
@@ -65,12 +65,19 @@ public class Cadastros {
                         String nomePesquisa = JOptionPane.showInputDialog(null,"Informe nome para alterar:");
                         for (UsuarioLeitor usuarioList : UsuarioLeitorDao.buscarTodos()) {
                                String nomeUsuario = usuarioList.getNome();
+
                             if (nomePesquisa.equals(nomeUsuario)){
                                 JOptionPane.showMessageDialog(null,"Alteração de cadastro do Usuário leitor. ");
+                                nome = JOptionPane.showInputDialog(null, "Informe novo nome. ");
+
+                                int novaIdade = usuarioList.getIdade();
+                                int novoCod = usuarioList.getCodigoMatricula();
+
+                                UsuarioLeitor NovousuarioLeitor = new UsuarioLeitor(nome,null,null,novoCod,novaIdade,null,null,null,null);
+                                UsuarioLeitorDao.salvar(NovousuarioLeitor);
+                                chamaMenuPrincipal();
                             }
                         }
-
-
 
                         chamaMenuCadastros();
                         break;
