@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class UsuarioLeitor extends Usuario{
 
-
     private int codigoMatricula;
     private int idade;
     private String endereco;

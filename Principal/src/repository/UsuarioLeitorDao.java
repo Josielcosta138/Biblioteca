@@ -11,6 +11,7 @@ public class UsuarioLeitorDao {
 
     public static void salvar(UsuarioLeitor usuarioLeitor){
         usuarioLeitorsLista.add(usuarioLeitor);
+
     }
 
     public static List<UsuarioLeitor> buscarTodos(){

@@ -24,35 +24,61 @@ public class Cadastros {
 
                 //ChamaCadastroDeBibliotecrio();
                 break;
-            case 1: //Usuário-Leitor
 
-                String codigoMatricula = JOptionPane.showInputDialog(null,"Informe código da matricula (INT).");
-                int codigoMatriculaConvertido = Integer.parseInt(codigoMatricula);
-                String nome = JOptionPane.showInputDialog(null, "Informe seu nome do usuário leitor. ");
-                String cpf = JOptionPane.showInputDialog(null, "Informe cpf do usuário leitor. ");
-                String idade = JOptionPane.showInputDialog(null, "Informe idade usuário leitor (INT).");
-                int idadeConvertido = Integer.parseInt(idade);
-                String telefone = JOptionPane.showInputDialog(null, "Informe telefone do usuário leitor. ");
-                String endereco = JOptionPane.showInputDialog(null, "Informe endereco do usuário leitor. ");
-                String email = JOptionPane.showInputDialog(null, "Informe e-mail do usuário leitor. ");
-                LocalDate dataMatricula = LocalDate.now();
+            case 1: //Cadastro - Usuário-Leitor
 
-                Object[] selecionaGenero = {"Masculino","Feminino","Outros"};
-                String  selecaoDefautl = (String) selecionaGenero[0];
-                Object selecaoGen = JOptionPane.showInputDialog(null," Informe genero do usuário Leitor:", "Genero", JOptionPane.QUESTION_MESSAGE, null,selecionaGenero, selecaoDefautl);
+                String[] opcoesMenuCadAltDel= {"Cadastrar","Alterar", "Deletar", "Sair"};
+                int menuCadastroLeitor = JOptionPane.showOptionDialog(null, "Escolha uma opção:",
+                        "Menu-Cadastro",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoesMenuCadAltDel, opcoesMenuCadAltDel[0]);
 
-                StatusGenero statusGenero = StatusGenero.MASCULINO;
-                if (selecaoGen.equals("Feminino")){
-                    statusGenero = StatusGenero.FEMININO;
-                } else if (selecaoGen.equals("Outros")) {
-                    statusGenero = StatusGenero.OUTROS;
+                switch (menuCadastroLeitor) {
+                    case 0: //Cadastrar
+
+                        String codigoMatricula = JOptionPane.showInputDialog(null,"Informe código da matricula (INT).");
+                        int codigoMatriculaConvertido = Integer.parseInt(codigoMatricula);
+                        String nome = JOptionPane.showInputDialog(null, "Informe seu nome do usuário leitor. ");
+                        String cpf = JOptionPane.showInputDialog(null, "Informe cpf do usuário leitor. ");
+                        String idade = JOptionPane.showInputDialog(null, "Informe idade usuário leitor (INT).");
+                        int idadeConvertido = Integer.parseInt(idade);
+                        String telefone = JOptionPane.showInputDialog(null, "Informe telefone do usuário leitor. ");
+                        String endereco = JOptionPane.showInputDialog(null, "Informe endereco do usuário leitor. ");
+                        String email = JOptionPane.showInputDialog(null, "Informe e-mail do usuário leitor. ");
+                        LocalDate dataMatricula = LocalDate.now();
+                        Object[] selecionaGenero = {"Masculino","Feminino","Outros"};
+                        String  selecaoDefautl = (String) selecionaGenero[0];
+                        Object selecaoGen = JOptionPane.showInputDialog(null," Informe genero do usuário Leitor:", "Genero", JOptionPane.QUESTION_MESSAGE, null,selecionaGenero, selecaoDefautl);
+
+                        StatusGenero statusGenero = StatusGenero.MASCULINO;
+                            if (selecaoGen.equals("Feminino")){
+                                statusGenero = StatusGenero.FEMININO;
+                            } else if (selecaoGen.equals("Outros")) {
+                                statusGenero = StatusGenero.OUTROS;
+                            }
+                        //String dataMatriculaNova = JOptionPane.showInputDialog(null, "Digite uma data (formato: dd/MM/yyyy):");
+                        UsuarioLeitor usuarioLeitor = new UsuarioLeitor(nome,cpf,statusGenero,codigoMatriculaConvertido,idadeConvertido,endereco,telefone,email,dataMatricula);
+                        UsuarioLeitorDao.salvar(usuarioLeitor);
+                        chamaMenuCadastros();
+                        break;
+
+                    case 1: //Alterar
+                        String nomePesquisa = JOptionPane.showInputDialog(null,"Informe nome para alterar:");
+                        for (UsuarioLeitor usuarioList : UsuarioLeitorDao.buscarTodos()) {
+                               String nomeUsuario = usuarioList.getNome();
+                            if (nomePesquisa.equals(nomeUsuario)){
+                                JOptionPane.showMessageDialog(null,"Alteração de cadastro do Usuário leitor. ");
+                            }
+                        }
+
+
+                        chamaMenuCadastros();
+                        break;
+
+                    case 2: //Deletar
+
+                    case 3: //Sair
+                        chamaMenuCadastros();
                 }
-
-
-                //String dataMatriculaNova = JOptionPane.showInputDialog(null, "Digite uma data (formato: dd/MM/yyyy):");
-                UsuarioLeitor usuarioLeitor = new UsuarioLeitor(nome,cpf,statusGenero,codigoMatriculaConvertido,idadeConvertido,endereco,telefone,email,dataMatricula);
-                UsuarioLeitorDao.salvar(usuarioLeitor);
-                chamaMenuCadastros();
 
               break;
             case 2: //Materiais
