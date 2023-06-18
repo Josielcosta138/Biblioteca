@@ -32,6 +32,7 @@ public class Cadastros {
                         "Menu Cadastro - Usuário Leitor",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoesMenuCadAltDel, opcoesMenuCadAltDel[0]);
 
+
                 switch (menuCadastroLeitor) {
                     case 0: //Cadastrar
 
@@ -62,30 +63,18 @@ public class Cadastros {
                         break;
 
                     case 1: //Alterar
-                        String nomePesquisa = JOptionPane.showInputDialog(null,"Informe nome para alterar:");
-                        for (UsuarioLeitor usuarioList : UsuarioLeitorDao.buscarTodos()) {
-                               String nomeUsuario = usuarioList.getNome();
-
-                            if (nomePesquisa.equals(nomeUsuario)){
-                                JOptionPane.showMessageDialog(null,"Alteração de cadastro do Usuário leitor. ");
-                                nome = JOptionPane.showInputDialog(null, "Informe novo nome. ");
-
-                                int novaIdade = usuarioList.getIdade();
-                                int novoCod = usuarioList.getCodigoMatricula();
-
-                                UsuarioLeitor NovousuarioLeitor = new UsuarioLeitor(nome,null,null,novoCod,novaIdade,null,null,null,null);
-                                UsuarioLeitorDao.salvar(NovousuarioLeitor);
-                                chamaMenuPrincipal();
-                            }
-                        }
-
+                        // CRIAR MÉTODO NA CLASSE DAO E DEPOIS SÓ CHAMAR MÉTODO
+                        UsuarioLeitorDao.AlterarUsuarioLeitor(usuarioLeitor);
                         chamaMenuCadastros();
                         break;
 
                     case 2: //Deletar
 
                     case 3: //Sair
-                        chamaMenuCadastros();
+                        //chamaMenuCadastros();
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + menuCadastroLeitor);
                 }
 
               break;
