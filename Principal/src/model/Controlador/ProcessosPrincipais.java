@@ -8,9 +8,9 @@ import static model.Controlador.Cadastros.chamaMenuCadastros;
 
 public class ProcessosPrincipais {
 
-    protected static void chamaMenuPrincipal() {
+    public static void chamaMenuPrincipal() {
         String[] opcoesMenu = {"Cadastros", "Processos", "Relatorios", "Sair"};
-            int opcao = JOptionPane.showOptionDialog(null, "Escolha uma opção:",
+                int opcao = JOptionPane.showOptionDialog(null, "Escolha uma opção:",
                 "Menu Principal",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoesMenu, opcoesMenu[0]);
 
