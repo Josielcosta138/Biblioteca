@@ -1,16 +1,16 @@
 package model.Controlador;
 
 import javax.swing.*;
-import model.Controlador.ProcessosPrincipais;
+
 import model.Livro;
 import model.StatusGenero;
 import model.UsuarioLeitor;
 import repository.LivroDao;
 import repository.UsuarioLeitorDao;
-import model.Execultavel.Main;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import static model.Controlador.ProcessosPrincipais.chamaMenuPrincipal;
 
@@ -71,6 +71,7 @@ public class Cadastros {
                             if (nomePesquisa.equals(nomeUsuario)) {
                                 JOptionPane.showMessageDialog(null, "Alteração de cadastro do Usuário leitor. ");
                             }
+
                         }
 
 
@@ -97,7 +98,7 @@ public class Cadastros {
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, selecaoGen2, selecaoGen2[0]);
 
                 switch (menuCadastroLivro) {
-                    case 0: //Cadastrar
+                    case 0: //Cadastrar Livro
 
                         String tituloLivro = JOptionPane.showInputDialog(null, "Informe o Titulo: ");
                         String autorLivro = JOptionPane.showInputDialog(null, "Informe o Autor: ");
@@ -113,7 +114,19 @@ public class Cadastros {
                         chamaMenuCadastros();
                         break;
 
-                    case 2: //Deletar
+                    case 1: //Alterar
+                        String livroPesquisa = JOptionPane.showInputDialog(null, "Informe o nome do livro para alterar:");
+
+                        for (Livro livro1 : LivroDao.buscarTodos()) {
+                            if (livroPesquisa.equals(livro1.getTituloLivro())) {
+                                String livroPesquisa1 = JOptionPane.showInputDialog(null, "Informe o nome do livro para alterar:");
+                                livro1.setTituloLivro(livroPesquisa1); // Substitua "novoTitulo" pelo título atualizado
+                                JOptionPane.showMessageDialog(null, "Alteração Realizada com Sucesso para: " + livro1.getTituloLivro());
+                            }
+                        }
+
+                        chamaMenuCadastros();
+                        break;
 
                     case 3: //Sair
                         chamaMenuCadastros();

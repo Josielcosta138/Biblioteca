@@ -19,7 +19,7 @@ public class Livro {
     }
 
     public String getTituloLivro() {
-        return tituloLivro;
+        return this.tituloLivro;
     }
 
     public void setTituloLivro(String tituloLivro) {
@@ -67,5 +67,10 @@ public class Livro {
                 ", anoPublicacao=" + anoPublicacao +
                 ", genero='" + genero + '\'' +
                 '}';
+    }
+
+
+    public Livro get(int i) {
+        return null;
     }
 }
